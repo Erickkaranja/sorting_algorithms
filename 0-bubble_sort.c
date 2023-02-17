@@ -25,7 +25,7 @@ void bubble_sort(int *array, size_t size)
 {
 	unsigned long int i, j;
 
-	if (array == NULL || size == 0 || size == 1)
+	if (array == NULL || size < 2)
 		return;
 
 	for (i = 0 ; i < size - 1 ; i++)
