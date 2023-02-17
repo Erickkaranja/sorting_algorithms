@@ -9,6 +9,7 @@
 void swap_element(int *element_1, int *element_2)
 {
 	int temp;
+
 	temp = *element_1;
 	*element_1 = *element_2;
 	*element_2 = temp;
@@ -32,11 +33,11 @@ void bubble_sort(int *array, size_t size)
 	{
 		for (j = 0 ; j < size - i - 1 ; j++)
 		{
-			if (array[j] > array[j +1])
+			if (array[j] > array[j + 1])
 			{
-				swap_element((array + j) , (array + j + 1));
+				swap_element((array + j), (array + j + 1));
 				print_array(array, size);
 			}
-		}	
-	} 
+		}
+	}
 }
