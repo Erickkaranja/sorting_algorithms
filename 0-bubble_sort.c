@@ -15,6 +15,7 @@ void swap_element(int *element_1, int *element_2)
 	*element_2 = temp;
 }
 
+
 /**
 * bubble_sort - implements bubble sort algorithm.
 *

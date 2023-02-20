@@ -1,5 +1,4 @@
 #include "sort.h"
-#include <stdlib.h>
 
 /**
 * max_element - finds the maximum array element.
@@ -13,7 +12,7 @@ int max_element(int *array, size_t size)
 
 	for (max = array[0], i = 1 ; i < (int)size ; i++)
 	{
-		if (array[i] > array[0])
+		if (array[i] > max)
 			max = array[i];
 	}
 	return (max);
@@ -31,7 +30,7 @@ void counting_sort(int *array, size_t size)
 	int max, *count, *sorted, i;
 
 	if (array == NULL || size < 2)
-	return;
+		return;
 
 	sorted = malloc(sizeof(int) * size);
 	if (sorted == NULL)
@@ -39,21 +38,24 @@ void counting_sort(int *array, size_t size)
 
 	max = max_element(array, size);
 
-	count = malloc(sizeof(int) * (max +1));
+
+	count = malloc(sizeof(int) * (max + 1));
 	if (count == NULL)
+	{
 		free(sorted);
-	return;
+		return;
+	}
 
 	for (i = 0 ; i < (max +1) ; i++)
-	count[i] = 0;
+		count[i] = 0;
 
 	for (i = 0 ; i < (int)size ; i++)
-	count[array[i]] += 1;
+		count[array[i]] += 1;
 
-	for (i = 0 ; i < (max +1) ; i++)
+	for (i = 0 ; i < (max + 1) ; i++)
 	count[i] += count[i - 1];
 
-	print_array(count, max +1);
+	print_array(count, max + 1);
 
 	for (i = 0 ; i < (int)size ; i++)
 	{
@@ -62,9 +64,7 @@ void counting_sort(int *array, size_t size)
 	}
 
 	for (i = 0 ; i < (int)size ; i++)
-	{
 		array[i] = sorted[i];
-	}
 
 	free(sorted);
 	free(count);
