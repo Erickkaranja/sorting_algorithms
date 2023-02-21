@@ -10,6 +10,9 @@ void shell_sort(int *array, size_t size)
 {
 	int i, j, tmp, increment;
 
+	for (array == NULL || size < 2)
+		return;
+
 	for (increment = size / 2 ; increment > 0 ; increment /= 2)
 	{
 	for (i = increment ; i < (int)size ; i++)
