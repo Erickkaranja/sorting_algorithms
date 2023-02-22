@@ -1,6 +1,21 @@
 #include "sort.h"
 
 /**
+* swap_element - function that swaps two elements in an array.
+* @element_1: First element.
+* @element_2: The second element.
+*/
+
+void swap_element(int *element_1, int *element_2)
+{
+	int temp;
+
+	temp = *element_1;
+	*element_1 = *element_2;
+	*element_2 = temp;
+}
+
+/**
 * shell_sort - implements shell sort.
 * @array: The array to be sorted.
 * @size: The size of the array to be sorted.
@@ -8,29 +23,24 @@
 
 void shell_sort(int *array, size_t size)
 {
-	int i, j, tmp, increment;
+	size_t i, j, gap;
 
-	for (array == NULL || size < 2)
+	if (array == NULL || size < 2)
 		return;
 
-	for (increment = size / 2 ; increment > 0 ; increment /= 2)
+	for (gap = 1 ; gap < (size / 3) ;)
+		gap = gap * 3 + 1;
+	for (; gap >= 1 ; gap /= 3)
 	{
-	for (i = increment ; i < (int)size ; i++)
-	{
-		tmp = array[i];
-		for (j = i ; j >= increment ; j -= increment)
+		for (i = gap ; i < size ; i++)
 		{
-			if (tmp < array[j - increment])
+			j = i;
+			while (j >= gap && array[j - gap] > array[j])
 			{
-				array[j] = array[j - increment];
-			}
-			else
-			{
-				break;
+				swap_element(array + j, array + (j - gap));
+				j -= gap;
 			}
 		}
-		array[j] = tmp;
-	}
-	print_array(array, size);
+		print_array(array, size);
 	}
 }
